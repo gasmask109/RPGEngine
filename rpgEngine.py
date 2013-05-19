@@ -59,6 +59,12 @@ class Wizard(GameCharacter):
         PlayerCharacter.__init__()
         self.progression.strength = 0
         self.progression.dex = 0
+        
+class Cleric(GameCharacter):
+    def __init__(self):
+        PlayerCharacter.__init__()
+        self.progression.strength = 0
+        self.progression.dex = 0
 
 def combatLoop(party, enemies):
     while partyAlive > 0 and enemiesAlive > 0:
