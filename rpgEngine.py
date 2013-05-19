@@ -19,15 +19,29 @@
 
 class Struct(): pass
 
+class Party():
+    def __init__(self, a):
+        self.members = a
+        self.aliveMembers()
+        
+    def aliveMembers(self):
+        group.alive = 0
+        for each in group:
+            if each.alive == True:
+                group.alive += 1
+        return group.alive
+
 class GameCharacter():
     @classmethod
     def __init__(self):
         self.progression = Struct()
         self.level = 1
+        self.alive = True
         
     def move(self, target):
-        for target in self.targets:
-            self.selectedMove(target)
+        if self.alive == True:
+            for target in self.targets:
+                self.selectedMove(target)
             
 class PlayerCharacter():
     @classmethod
@@ -79,7 +93,7 @@ class Cleric(GameCharacter):
         self.progression.wis = 6
 
 def combatLoop(party, enemies):
-    while partyAlive > 0 and enemiesAlive > 0:
+    while party.alive > 0 and enemies.alive > 0:
         for character in party:
             character.moveSelect(party, enemies)
         for character in party:
@@ -87,13 +101,21 @@ def combatLoop(party, enemies):
         for enemy in enemies:
             enemy.attactPattern(enemies, party)
             enemy.move(enemy.targets)
+        party.aliveMembers()
+        enemies.aliveMembers()
 
 def engineTest():
     roran = Fighter()
     roran.level += 1
     assert roran.level == 2
     dalia = Rogue()
-    assert dalia.level == 2
+    assert dalia.level == 1
+    playerParty = [roran, dalia]
+    assert groupAlive(playerParty) == 2
+    roran.alive = False
+    assert groupAlive(playerParty) == 1
+    
+    
 
 if __name__ == '__main__':
 	engineTest()
