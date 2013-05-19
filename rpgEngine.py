@@ -17,11 +17,42 @@
 #  
 #  
 
+class Struct(): pass
+
 class GameCharacter():
-    def move(self, self.target):
-        selectedMove = self.selectedMove
+    @classmethod
+    def __init__(self):
+        self.progression = Struct()
+        self.level = 1
+        
+    def move(self, target):
         for target in self.targets:
-            selectedMove(target)
+            self.selectedMove(target)
+            
+class PlayerCharacter():
+    @classmethod
+    def __init__(self):
+        GameCharacter.__init__()
+        
+    def moveSelect(party, enemies):
+        category = raw_input("Attack or Defend\n")
+        if category == "Attack": self.selectedMove = "Attack"
+        elif category == "Defend": self.selectedMove = "Defend"
+        else:
+            print "Please try again\n"
+            moveSelect(party, enemies)
+        
+class Fighter(GameCharacter):
+    def __init__(self):
+        PlayerCharacter.__init__()
+        self.progression.strength = 5
+        self.progression.dex = 0
+        
+class Rogue(GameCharacter):
+    def __init__(self):
+        PlayerCharacter.__init__()
+        self.progression.strength = 0
+        self.progression.dex = 5
 
 def combatLoop(party, enemies):
     while partyAlive > 0 and enemiesAlive > 0:
@@ -32,4 +63,14 @@ def combatLoop(party, enemies):
         for enemy in enemies:
             enemy.attactPattern(enemies, party)
             enemy.move(enemy.targets)
-            
+
+def engineTest():
+    roran = Fighter()
+    roran.level += 1
+    assert roran.level == 2
+    dalia = Rogue()
+    assert dalia.level == 2
+	
+if __name__ == '__main__':
+	engineTest()
+
