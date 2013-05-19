@@ -45,26 +45,38 @@ class PlayerCharacter():
 class Fighter(GameCharacter):
     def __init__(self):
         PlayerCharacter.__init__()
-        self.progression.strength = 5
-        self.progression.dex = 0
+        self.progression.stre = 5
+        self.progression.dex = 3
+        self.progression.con = 4
+        self.progression.intel = 1
+        self.progression.wis = 2 
         
 class Rogue(GameCharacter):
     def __init__(self):
         PlayerCharacter.__init__()
-        self.progression.strength = 0
+        self.progression.stre = 3
         self.progression.dex = 5
+        self.progression.con = 2
+        self.progression.intel = 4
+        self.progression.wis = 1
         
 class Wizard(GameCharacter):
     def __init__(self):
         PlayerCharacter.__init__()
-        self.progression.strength = 0
-        self.progression.dex = 0
+        self.progression.stre = 1
+        self.progression.dex = 3
+        self.progression.con = 1
+        self.progression.intel = 6
+        self.progression.wis = 2
         
 class Cleric(GameCharacter):
     def __init__(self):
         PlayerCharacter.__init__()
-        self.progression.strength = 0
-        self.progression.dex = 0
+        self.progression.stre = 1
+        self.progression.dex = 1
+        self.progression.con = 2
+        self.progression.intel = 2
+        self.progression.wis = 6
 
 def combatLoop(party, enemies):
     while partyAlive > 0 and enemiesAlive > 0:
