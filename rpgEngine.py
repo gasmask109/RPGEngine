@@ -25,11 +25,11 @@ class Party():
         self.aliveMembers()
         
     def aliveMembers(self):
-        group.alive = 0
-        for each in group:
+        self.alive = 0
+        for each in self.members:
             if each.alive == True:
-                group.alive += 1
-        return group.alive
+                self.alive += 1
+        return self.alive
 
 class GameCharacter():
     @classmethod
@@ -110,11 +110,10 @@ def engineTest():
     assert roran.level == 2
     dalia = Rogue()
     assert dalia.level == 1
-    playerParty = [roran, dalia]
-    assert groupAlive(playerParty) == 2
+    playerParty = Party([roran, dalia])
+    assert playerParty.aliveMembers() == 2
     roran.alive = False
-    assert groupAlive(playerParty) == 1
-    
+    assert playerParty.aliveMembers() == 1
     
 
 if __name__ == '__main__':
