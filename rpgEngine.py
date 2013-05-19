@@ -53,6 +53,12 @@ class Rogue(GameCharacter):
         PlayerCharacter.__init__()
         self.progression.strength = 0
         self.progression.dex = 5
+        
+class Wizard(GameCharacter):
+    def __init__(self):
+        PlayerCharacter.__init__()
+        self.progression.strength = 0
+        self.progression.dex = 0
 
 def combatLoop(party, enemies):
     while partyAlive > 0 and enemiesAlive > 0:
@@ -70,7 +76,6 @@ def engineTest():
     assert roran.level == 2
     dalia = Rogue()
     assert dalia.level == 2
-	
+
 if __name__ == '__main__':
 	engineTest()
-
