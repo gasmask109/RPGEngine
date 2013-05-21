@@ -14,6 +14,18 @@ class Party():
             if each.alive == True:
                 self.alive += 1
         return self.alive
+        
+    def combatLoop(self, enemyParty):
+        while self.alive > 0 and enemyParty.alive > 0:
+            for character in self.members:
+                character.moveSelect(self, enemyParty)
+            for character in self.members:
+                character.move(character.targets)
+            for enemy in enemyParty:
+                enemy.attactPattern(enemyParty, self)
+                enemy.move(enemy.targets)
+            self.aliveMembers()
+            enemyParty.aliveMembers()
 
 class GameCharacter():
     @classmethod
@@ -47,7 +59,7 @@ class Fighter(GameCharacter):
         self.progression.dex = 3
         self.progression.con = 4
         self.progression.intel = 1
-        self.progression.wis = 2 
+        self.progression.wis = 2
         
 class Rogue(GameCharacter):
     def __init__(self):
